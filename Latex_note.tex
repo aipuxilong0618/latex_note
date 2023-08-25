@@ -54,6 +54,8 @@
 
 \section{一些基本知识}
 \href{https://mirrors.tuna.tsinghua.edu.cn/CTAN/info/lshort/chinese/lshort-zh-cn.pdf}{主要看的这本书}
+补：有问题也可以问ChatGPT。。。。不仅能解决程序运行不出来的问题，提供的代码比你写的还简洁，效果还好。。。。。。。。。一个悲伤的故事
+
 
 \begin{itemize}
 	\item latex区分大小写,\verb|\LaTeX|，带*不带*
@@ -311,7 +313,58 @@ BIBTEX程序在生成参考文献列表的时候，通常只列出用了\verb|\c
 \section{绘图功能}
 使用tikz宏包绘图，用直角坐标系或极坐标描述点的位置，可画一些常见图形及抛物线。也可填充颜色指定线条类型文字结点循环啥的，等用到的时候再说吧。再说了，麻烦的图直接通过其他软件生成*.eps图片再插入，不是更好吗。。。
 
+\section{制作ppt}
+这有一本汉化过的三百多页的beam包使用说明书。。。
+\href{http://static.latexstudio.net/wp-content/uploads/2017/02/BeamerUserGuide_V3.24_zh-cn.pdf}{用户手册}
 
+
+使用beamer环境，一帧是一页，用frame，也可以直接在后面加\{\}：
+\begin{lstlisting}
+\begin{frame}{古数学}{定理发现}
+	发现了一些定理
+		
+	比如说:
+\begin{itemize}
+	\item 公元前11世纪
+	\begin{quote}      %是一页帧，但点一下出一点，这块的代码实际上有四页
+		勾三股四玄五
+	\end{quote}
+	\item 又比如说
+	\begin{quote}
+		$3^2+4^2=5^2$
+	\end{quote}
+\end{itemize}
+end{frame}	
+\end{lstlisting}
+
+样子长这样：
+
+\includegraphics[width=\textwidth]{ppt1.png}
+
+开始会使用\verb|\usetheme{Berlin}|指定ppt的主题包，berlin是其中一种。全部主题包及示例可以看\href{https://blog.csdn.net/zhouxiaowei1120/article/details/82818295}{这里};可以使用\verb|\usecolortheme{lily}|指定ppt的主题颜色，全部主题颜色及示例可以看\href{https://blog.csdn.net/zhouxiaowei1120/article/details/82818348?spm=1001.2014.3001.5502}{这里}
+
+使得每个章节都有小目录：
+\begin{lstlisting}
+\AtBeginSection[]
+{
+	\begin{frame}<beamer>
+		\frametitle{\textbf{目录}}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+\end{lstlisting}
+
+可以使用columns环境分栏，一般把图片放在左侧；插入网页可以使用这种形式：
+
+\begin{lstlisting}
+\begin{block}{代码地址}
+	\url{https://github.com/aipuxilong0618/pde_note}
+\end{block}
+\end{lstlisting}
+
+另：\lstinline|\begin{column}<0->{.5\textwidth}|含义：该列从幻灯片放映的开头开始显示其内容，并占据幻灯片上可用宽度的 50%。
+
+另：选取部分主题后转成ppt后所有的block都会变成黑框。。神奇，最后我用的默认default的
 
 \section{一些其他问题}
 \begin{enumerate}
